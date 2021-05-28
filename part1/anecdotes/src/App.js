@@ -6,6 +6,16 @@ const Button = (props) => {
   )
 }
 
+const Anecdote = (props) => {
+  return (
+    <div>
+      <h2>{props.title}</h2>
+      <p>{props.quote}</p>
+      <p>has {props.votes} points</p>
+    </div>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'The best way to get a project done faster is to start sooner',
@@ -51,14 +61,24 @@ const App = () => {
 
   return (
     <div>
-      <h2>Anecdote of the day</h2>
-      <p>{anecdotes[selected]}</p>
-      <p>has {points[selected]} points</p>
-      <Button handleClick={voteHandleClick} text="vote" selected={selected}/>
-      <Button handleClick={() => setSelected(randomNum)} text="next anecdote"/>
-      <h2>Anecdote with most votes</h2>
-      <p>{anecdotes[mostVoted()]}</p>
-      <p>has {points[mostVoted()]} points</p>
+      <Anecdote 
+        title="Anecdote of the day" 
+        quote={anecdotes[selected]} 
+        votes={points[selected]}
+      />
+      <Button 
+        handleClick={voteHandleClick} 
+        text="vote" 
+        selected={selected}
+      />
+      <Button 
+        handleClick={() => setSelected(randomNum)} 
+        text="next anecdote"/>
+      <Anecdote 
+        title="Anecdote with most votes" 
+        quote={anecdotes[mostVoted()]} 
+        votes={points[mostVoted()]} 
+      />
     </div>
   );
 }
